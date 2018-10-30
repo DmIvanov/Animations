@@ -63,7 +63,9 @@ class AnimationLayer: CALayer {
             firstColor = col
         }
         type.doCalculationIfNeeded(link: displaylink)
-        setNeedsDisplay()
+        DispatchQueue.main.async { [weak self] in
+            self?.setNeedsDisplay()
+        }
         NSLog("type: \(type), x: \(x)")
     }
 }
